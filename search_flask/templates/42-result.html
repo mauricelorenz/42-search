@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced 42 Search</title>
+</head>
+<body>
+    <h1>Advanced 42 Search</h1>
+    <ul>
+        {% for user in users %}
+        <li>
+            Name: {{ user.login }} |
+            <a href="https://profile-v3.intra.42.fr/users/{{ user.login }}">Profile</a> 
+        </li>
+        {% endfor %}
+    </ul>
+    </form>
+</body>
+</html>
