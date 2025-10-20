@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Advanced 42 Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <h1>Advanced 42 Search</h1>
-    <ul>
+    <!-- <ul>
         {% for user in users %}
         <li>
             Intra: {{ user.login }} |
@@ -17,7 +18,34 @@
             <img src="{{ user.image.versions.small }}" alt="Picture of {{ user.login }}">
         </li>
         {% endfor %}
-    </ul>
-    </form>
+    </ul> -->
+    <table>
+  <thead>
+    <tr>
+      <th>Avatar</th>
+      <th>Intra</th>
+      <th>First name</th>
+      <th>Last name</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+      <tr>
+        <td>
+          {% if user.image and user.image.versions and user.image.versions.small %}
+            <img src="{{ user.image.versions.small }}" alt="{{ user.login }}" width="80">
+          {% else %}
+            <img src="{{ url_for('static', filename='img/42_Logo.png') }}" alt="No picture" width="80">
+          {% endif %}
+        </td>
+        <td><a href="https://profile-v3.intra.42.fr/users/{{ user.login }}">{{ user.login }}</a></td>
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.last_name }}</td>
+      </tr>
+    {% else %}
+      <tr><td colspan="4">No matching users found</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
 </body>
 </html>
