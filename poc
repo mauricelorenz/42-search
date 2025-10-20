@@ -1,0 +1,5 @@
+curl -X POST --data "grant_type=client_credentials&client_id=u-s4t2ud-9c0c4e5c5d4c7a21e6aec7f7a6a6c48ad800b7ab86615f4636d9fbb1750b7c57&client_secret=SECRET" https://api.intra.42.fr/oauth/token
+
+curl -H \
+"Authorization: Bearer TOKEN" \
+"https://api.intra.42.fr/v2/users?filter\[login\]=mlorenz"
