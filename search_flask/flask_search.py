@@ -16,10 +16,13 @@ def result():
     get_token_payload = f"grant_type=client_credentials&client_id={cid}&client_secret={sec}"
     get_token_response = requests.post(get_token_url, data=get_token_payload)
     token = get_token_response.json()["access_token"]
-    campus = request.args["campus"]
+    campus = request.args["campus"].title()
+    print(campus)
     get_campus_url = f"https://api.intra.42.fr/v2/campus?filter[name]={campus}"
     header = {"Authorization": f"Bearer {token}"}
     get_campus_response = requests.get(get_campus_url, headers=header)
+    if get_campus_response != 200:
+        return render_template("42-result.html")
     campus_id = get_campus_response.json()[0]["id"]
     first_name = request.args["first_name"]
     get_users_url = f"https://api.intra.42.fr/v2/users?campus_id={campus_id}&filter[first_name]={first_name}"
