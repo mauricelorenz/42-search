@@ -17,11 +17,9 @@ def result():
     get_token_response = requests.post(get_token_url, data=get_token_payload)
     token = get_token_response.json()["access_token"]
     campus = request.args["campus"].title()
-    print(campus)
     get_campus_url = f"https://api.intra.42.fr/v2/campus?filter[name]={campus}"
     header = {"Authorization": f"Bearer {token}"}
     get_campus_response = requests.get(get_campus_url, headers=header)
-    print(get_campus_response)
     if not get_campus_response.json():
         return render_template("42-result.html")
     campus_id = get_campus_response.json()[0]["id"]
