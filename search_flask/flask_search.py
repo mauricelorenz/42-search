@@ -21,7 +21,8 @@ def result():
     get_campus_url = f"https://api.intra.42.fr/v2/campus?filter[name]={campus}"
     header = {"Authorization": f"Bearer {token}"}
     get_campus_response = requests.get(get_campus_url, headers=header)
-    if get_campus_response != 200:
+    print(get_campus_response)
+    if not get_campus_response.json():
         return render_template("42-result.html")
     campus_id = get_campus_response.json()[0]["id"]
     first_name = request.args["first_name"]
