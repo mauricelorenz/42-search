@@ -1,0 +1,12 @@
+sudo apt update
+sudo apt full-upgrade -y
+python3 --version
+pip --version
+cd search_flask/
+python3 -m venv flaskenv
+source flaskenv/bin/activate
+pip install flask
+flask --version
+code secret
+pip install requests
+python3 flask_search.py
